@@ -15,10 +15,6 @@ public class GroupCreationTests {
     dr = new ChromeDriver();
     dr.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
     js = (JavascriptExecutor) dr;
-  }
-
-  @Test
-  public void testGroupCreation() throws Exception {
     dr.get("http://localhost/addressbook/group.php?selected%5B%5D=1&selected%5B%5D=2&selected%5B%5D=3&delete=Delete+group%28s%29");
     dr.findElement(By.name("user")).clear();
     dr.findElement(By.name("user")).sendKeys("admin");
@@ -26,6 +22,10 @@ public class GroupCreationTests {
     dr.findElement(By.name("pass")).clear();
     dr.findElement(By.name("pass")).sendKeys("secret");
     dr.findElement(By.cssSelector("input[type=\"submit\"]")).click();
+  }
+
+  @Test
+  public void testGroupCreation() throws Exception {
     dr.findElement(By.linkText("group page")).click();
     dr.get("http://localhost/addressbook/group.php");
     dr.findElement(By.name("new")).click();
