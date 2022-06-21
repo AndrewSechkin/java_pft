@@ -7,14 +7,12 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 public class GroupCreationTests {
   private WebDriver dr;
-  private JavascriptExecutor js;
 
   @BeforeMethod(alwaysRun = true)
   public void setUp() throws Exception {
-    System.setProperty("webdriver.chrome.driver", "");
+    System.setProperty("webdriver.chrome.driver", "C:\\Project\\chromedriver.exe");
     dr = new ChromeDriver();
     dr.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-    js = (JavascriptExecutor) dr;
     dr.get("http://localhost/addressbook/group.php?selected%5B%5D=1&selected%5B%5D=2&selected%5B%5D=3&delete=Delete+group%28s%29");
     dr.findElement(By.name("user")).clear();
     dr.findElement(By.name("user")).sendKeys("admin");
@@ -45,15 +43,6 @@ public class GroupCreationTests {
   @AfterMethod(alwaysRun = true)
   public void tearDown() throws Exception {
     dr.quit();
-  }
-
-  private boolean isElementPresent(By by) {
-    try {
-      dr.findElement(by);
-      return true;
-    } catch (NoSuchElementException e) {
-      return false;
-    }
   }
 
   private boolean isAlertPresent() {
