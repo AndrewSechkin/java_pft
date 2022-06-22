@@ -1,10 +1,15 @@
-package ru.stqa.pft.addressbook;
+package ru.stqa.pft.addressbook.tests;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.NoAlertPresentException;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
+import ru.stqa.pft.addressbook.model.ContactData;
 
 import java.util.concurrent.TimeUnit;
-
-import org.testng.annotations.*;
-import org.openqa.selenium.*;
-import org.openqa.selenium.chrome.ChromeDriver;
 
 public class ContactCreationTests {
   private WebDriver dr;
@@ -17,6 +22,7 @@ public class ContactCreationTests {
     dr.get("http://localhost/addressbook/group.php?selected%5B%5D=1&selected%5B%5D=2&selected%5B%5D=3&delete=Delete+group%28s%29");
     login(dr, "admin", "secret");
   }
+
   private static void login(WebDriver dr, String username, String password) {
     dr.findElement(By.name("user")).clear();
     dr.findElement(By.name("user")).sendKeys(username);
@@ -25,6 +31,7 @@ public class ContactCreationTests {
     dr.findElement(By.name("pass")).sendKeys(password);
     dr.findElement(By.cssSelector("input[type=\"submit\"]")).click();
   }
+
   @Test
   public void testContactCreationTests() throws Exception {
     initContactCreation();
@@ -83,6 +90,4 @@ public class ContactCreationTests {
       return false;
     }
   }
-
-
-  }
+}
