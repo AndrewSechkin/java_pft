@@ -1,49 +1,35 @@
 package ru.stqa.pft.addressbook.model;
 
 public class ContactData {
-  private final String firstname;
-  private final String middlename;
-  private final String lastname;
-  private final String nickname;
-  private final String mobile;
-  private final String qa;
-  private final String email;
+  private final String firstName;
+  private final String lastName;
+  private final String address;
+  private final String homePhone;
+  private final String mobilePhone;
+  private final String email1;
+  private final String email2;
 
-  public ContactData(String firstname, String middlename, String lastname, String nickname, String mobile, String qa, String email) {
-    this.firstname = firstname;
-    this.middlename = middlename;
-    this.lastname = lastname;
-    this.nickname = nickname;
-    this.mobile = mobile;
-    this.qa = qa;
-    this.email = email;
+  public ContactData (String firstName, String lastName, String address, String homePhone, String mobilePhone, String email1, String email2) {
+    this.firstName = firstName;
+    this.lastName = lastName;
+    this.address = address;
+    this.homePhone = homePhone;
+    this.mobilePhone = mobilePhone;
+    this.email1 = email1;
+    this.email2 = email2;
   }
 
-  public String getFirstname() {
-    return firstname;
-  }
+  public  String getFirstName() { return firstName; }
 
-  public String getMiddlename() {
-    return middlename;
-  }
+  public  String getLastName() { return lastName; }
 
-  public String getLastname() {
-    return lastname;
-  }
+  public  String getAddress() { return address; }
 
-  public String getNickname() {
-    return nickname;
-  }
+  public  String getHomePhone() { return homePhone; }
 
-  public String getMobile() {
-    return mobile;
-  }
+  public  String getMobilePhone() { return mobilePhone; }
 
-  public String getQa() {
-    return qa;
-  }
+  public  String getEmail1() { return email1; }
 
-  public String getEmail() {
-    return email;
-  }
+  public  String getEmail2() { return email2; }
 }

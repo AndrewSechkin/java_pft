@@ -5,11 +5,10 @@ import org.testng.annotations.Test;
 public class GroupDeletionTests extends TestBase {
 
   @Test
-  public void testGroupDeletionTests() throws Exception {
+  public void testGroupDeletion() throws Exception {
     app.getNavigationHelper().gotoGroupPage();
     app.getGroupHelper().selectGroup();
-    app.getGroupHelper().deleteSelectGroups();
+    app.getGroupHelper().deleteSelectedGroups();
     app.getGroupHelper().returnToGroupPage();
   }
-
 }

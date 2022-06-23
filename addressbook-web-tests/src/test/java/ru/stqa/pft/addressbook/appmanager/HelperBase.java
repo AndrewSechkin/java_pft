@@ -20,7 +20,6 @@ public class HelperBase {
     dr.findElement(locator).clear();
     dr.findElement(locator).sendKeys(text);
   }
-
   public boolean isAlertPresent() {
     try {
       dr.switchTo().alert();

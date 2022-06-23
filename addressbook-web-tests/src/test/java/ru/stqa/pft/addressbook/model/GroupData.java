@@ -1,9 +1,9 @@
 package ru.stqa.pft.addressbook.model;
 
 public class GroupData {
-  private final String name;
-  private final String header;
-  private final String footer;
+  private  final  String name;
+  private  final  String header;
+  private  final  String footer;
 
   public GroupData(String name, String header, String footer) {
     this.name = name;
@@ -11,15 +11,9 @@ public class GroupData {
     this.footer = footer;
   }
 
-  public String getName() {
-    return name;
-  }
+  public String getName() { return name; }
 
-  public String getHeader() {
-    return header;
-  }
+  public  String getHeader() { return header; }
 
-  public String getFooter() {
-    return footer;
-  }
+  public  String getFooter() { return footer; }
 }
