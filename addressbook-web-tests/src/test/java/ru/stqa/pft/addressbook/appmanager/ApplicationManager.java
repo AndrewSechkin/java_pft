@@ -44,15 +44,11 @@ public class ApplicationManager {
     return groupHelper;
   }
 
-  public ContactHelper getContactHelper() {
-    return contactHelper;
-  }
-
   public NavigationHelper getNavigationHelper() {
     return navigationHelper;
   }
 
-  public SessionHelper getSessionHelper() {
-    return sessionHelper;
+  public ContactHelper getContactHelper() {
+    return contactHelper;
   }
 }
