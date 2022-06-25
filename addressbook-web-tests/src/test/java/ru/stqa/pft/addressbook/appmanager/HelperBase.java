@@ -26,6 +26,7 @@ public class HelperBase {
       }
     }
   }
+
   protected void accept() {
     dr.switchTo().alert().accept();
   }
