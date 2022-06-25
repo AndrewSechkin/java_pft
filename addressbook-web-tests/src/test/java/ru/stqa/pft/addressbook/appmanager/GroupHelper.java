@@ -5,7 +5,7 @@ import org.openqa.selenium.WebDriver;
 import ru.stqa.pft.addressbook.model.GroupData;
 
 public class GroupHelper extends HelperBase {
-  
+
   public GroupHelper(WebDriver dr) {
     super(dr);
   }
@@ -58,4 +58,4 @@ public class GroupHelper extends HelperBase {
   public int getGroupCount() {
     return dr.findElements(By.name("selected[]")).size();
   }
-}}
+}
