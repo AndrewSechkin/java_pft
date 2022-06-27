@@ -6,10 +6,11 @@ repositories {
 
 dependencies {
 
-    compile 'org.testng:testng:6.9.10'
-    compile 'org.seleniumhq.selenium:selenium-java:3.14.0'
-
+    testCompile 'org.testng:testng:6.9.10'
+    testCompile 'org.seleniumhq.selenium:selenium-java:3.14.0'
+    testCompile 'org.hamcrest:java-hamcrest:2.0.0.0'
 }
+
 test {
     useTestNG()
 }
