@@ -15,7 +15,11 @@ public class ContactHelper extends HelperBase {
   }
 
   public void returnToHomePage() {
-    dr.findElement(By.linkText("home page")).click();
+
+    if (isElementPresent(By.linkText("home page"))) {
+      click(By.linkText("home page"));
+    }
+    click(By.linkText("home"));
   }
 
   public void fillContactForm(ContactData contactData, boolean creation) {
@@ -93,7 +97,7 @@ public class ContactHelper extends HelperBase {
 
   private Contacts contactCache = null;
 
-  public int getContactCount() {
+  public int count() {
     return dr.findElements(By.name("selected[]")).size();
   }
 
