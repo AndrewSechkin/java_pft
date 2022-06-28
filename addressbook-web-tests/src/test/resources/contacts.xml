@@ -1,7 +1,6 @@
 <list>
-  <ru.stqa.pft.addressbook.tests.model.ContactData>
-    <id>2147483647</id>
-    <firstName>FirstName 0</firstName>
+  <contact>
+    <firstName>Andrew</firstName>
     <lastName>LastName 0</lastName>
     <address>Address 0</address>
     <homePhone>11111111 0</homePhone>
@@ -12,9 +11,8 @@
     <email2>test2@test.com 0</email2>
     <email3>test3@test.com 0</email3>
     <photo>src\test\resources\stru.png</photo>
-  </ru.stqa.pft.addressbook.tests.model.ContactData>
-  <ru.stqa.pft.addressbook.tests.model.ContactData>
-    <id>2147483647</id>
+  </contact>
+  <contact>
     <firstName>FirstName 1</firstName>
     <lastName>LastName 1</lastName>
     <address>Address 1</address>
@@ -26,9 +24,8 @@
     <email2>test2@test.com 1</email2>
     <email3>test3@test.com 1</email3>
     <photo>src\test\resources\stru.png</photo>
-  </ru.stqa.pft.addressbook.tests.model.ContactData>
-  <ru.stqa.pft.addressbook.tests.model.ContactData>
-    <id>2147483647</id>
+  </contact>
+  <contact>
     <firstName>FirstName 2</firstName>
     <lastName>LastName 2</lastName>
     <address>Address 2</address>
@@ -40,9 +37,8 @@
     <email2>test2@test.com 2</email2>
     <email3>test3@test.com 2</email3>
     <photo>src\test\resources\stru.png</photo>
-  </ru.stqa.pft.addressbook.tests.model.ContactData>
-  <ru.stqa.pft.addressbook.tests.model.ContactData>
-    <id>2147483647</id>
+  </contact>
+  <contact>
     <firstName>FirstName 3</firstName>
     <lastName>LastName 3</lastName>
     <address>Address 3</address>
@@ -54,9 +50,8 @@
     <email2>test2@test.com 3</email2>
     <email3>test3@test.com 3</email3>
     <photo>src\test\resources\stru.png</photo>
-  </ru.stqa.pft.addressbook.tests.model.ContactData>
-  <ru.stqa.pft.addressbook.tests.model.ContactData>
-    <id>2147483647</id>
+  </contact>
+  <contact>
     <firstName>FirstName 4</firstName>
     <lastName>LastName 4</lastName>
     <address>Address 4</address>
@@ -68,5 +63,5 @@
     <email2>test2@test.com 4</email2>
     <email3>test3@test.com 4</email3>
     <photo>src\test\resources\stru.png</photo>
-  </ru.stqa.pft.addressbook.tests.model.ContactData>
+  </contact>
 </list>
