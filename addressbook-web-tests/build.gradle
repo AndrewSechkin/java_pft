@@ -11,9 +11,26 @@ dependencies {
     testCompile 'org.hamcrest:java-hamcrest:2.0.0.0'
     testCompile 'com.beust:jcommander:1.82'
     testCompile 'com.thoughtworks.xstream:xstream:1.4.18'
+    testCompile 'com.google.code.gson:gson:2.8.9'
 }
 
-test {
-    useTestNG()
+task testGroups(type: Test) {
+    useTestNG {
+        suites 'src/test/resources/testng-groups.xml'
+    }
+    if (project.hasProperty('browser')) {
+        systemProperty 'browser', "${browser}"
+    }
+    if (project.hasProperty('target')) {
+        systemProperty 'target', "${target}"
+    }
 }
-  
+
+task testContacts(type: Test) {
+    useTestNG {
+        suites 'src/test/resources/testng-contacts.xml'
+    }
+    if (project.hasProperty('browser')) {
+        systemProperty 'browser', "${browser}"
+    }
+}

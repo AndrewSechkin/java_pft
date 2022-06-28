@@ -1,5 +1,5 @@
 <list>
-  <ru.stqa.pft.addressbook.tests.model.ContactData>
+  <ru.stqa.pft.addressbook.model.ContactData>
     <id>2147483647</id>
     <firstName>FirstName 0</firstName>
     <lastName>LastName 0</lastName>
@@ -12,8 +12,8 @@
     <email2>test2@test.com 0</email2>
     <email3>test3@test.com 0</email3>
     <photo>src\test\resources\stru.png</photo>
-  </ru.stqa.pft.addressbook.tests.model.ContactData>
-  <ru.stqa.pft.addressbook.tests.model.ContactData>
+  </ru.stqa.pft.addressbook.model.ContactData>
+  <ru.stqa.pft.addressbook.model.ContactData>
     <id>2147483647</id>
     <firstName>FirstName 1</firstName>
     <lastName>LastName 1</lastName>
@@ -26,8 +26,8 @@
     <email2>test2@test.com 1</email2>
     <email3>test3@test.com 1</email3>
     <photo>src\test\resources\stru.png</photo>
-  </ru.stqa.pft.addressbook.tests.model.ContactData>
-  <ru.stqa.pft.addressbook.tests.model.ContactData>
+  </ru.stqa.pft.addressbook.model.ContactData>
+  <ru.stqa.pft.addressbook.model.ContactData>
     <id>2147483647</id>
     <firstName>FirstName 2</firstName>
     <lastName>LastName 2</lastName>
@@ -40,8 +40,8 @@
     <email2>test2@test.com 2</email2>
     <email3>test3@test.com 2</email3>
     <photo>src\test\resources\stru.png</photo>
-  </ru.stqa.pft.addressbook.tests.model.ContactData>
-  <ru.stqa.pft.addressbook.tests.model.ContactData>
+  </ru.stqa.pft.addressbook.model.ContactData>
+  <ru.stqa.pft.addressbook.model.ContactData>
     <id>2147483647</id>
     <firstName>FirstName 3</firstName>
     <lastName>LastName 3</lastName>
@@ -54,8 +54,8 @@
     <email2>test2@test.com 3</email2>
     <email3>test3@test.com 3</email3>
     <photo>src\test\resources\stru.png</photo>
-  </ru.stqa.pft.addressbook.tests.model.ContactData>
-  <ru.stqa.pft.addressbook.tests.model.ContactData>
+  </ru.stqa.pft.addressbook.model.ContactData>
+  <ru.stqa.pft.addressbook.model.ContactData>
     <id>2147483647</id>
     <firstName>FirstName 4</firstName>
     <lastName>LastName 4</lastName>
@@ -68,5 +68,5 @@
     <email2>test2@test.com 4</email2>
     <email3>test3@test.com 4</email3>
     <photo>src\test\resources\stru.png</photo>
-  </ru.stqa.pft.addressbook.tests.model.ContactData>
+  </ru.stqa.pft.addressbook.model.ContactData>
 </list>
