@@ -1,0 +1,72 @@
+<list>
+  <ru.stqa.pft.addressbook.tests.model.ContactData>
+    <id>2147483647</id>
+    <firstName>FirstName 0</firstName>
+    <lastName>LastName 0</lastName>
+    <address>Address 0</address>
+    <homePhone>11111111 0</homePhone>
+    <homePhone2>22222222 0</homePhone2>
+    <mobilePhone>33333333 0</mobilePhone>
+    <workPhone>44444444 0</workPhone>
+    <email>test@test.com 0</email>
+    <email2>test2@test.com 0</email2>
+    <email3>test3@test.com 0</email3>
+    <photo>src\test\resources\stru.png</photo>
+  </ru.stqa.pft.addressbook.tests.model.ContactData>
+  <ru.stqa.pft.addressbook.tests.model.ContactData>
+    <id>2147483647</id>
+    <firstName>FirstName 1</firstName>
+    <lastName>LastName 1</lastName>
+    <address>Address 1</address>
+    <homePhone>11111111 1</homePhone>
+    <homePhone2>22222222 1</homePhone2>
+    <mobilePhone>33333333 1</mobilePhone>
+    <workPhone>44444444 1</workPhone>
+    <email>test@test.com 1</email>
+    <email2>test2@test.com 1</email2>
+    <email3>test3@test.com 1</email3>
+    <photo>src\test\resources\stru.png</photo>
+  </ru.stqa.pft.addressbook.tests.model.ContactData>
+  <ru.stqa.pft.addressbook.tests.model.ContactData>
+    <id>2147483647</id>
+    <firstName>FirstName 2</firstName>
+    <lastName>LastName 2</lastName>
+    <address>Address 2</address>
+    <homePhone>11111111 2</homePhone>
+    <homePhone2>22222222 2</homePhone2>
+    <mobilePhone>33333333 2</mobilePhone>
+    <workPhone>44444444 2</workPhone>
+    <email>test@test.com 2</email>
+    <email2>test2@test.com 2</email2>
+    <email3>test3@test.com 2</email3>
+    <photo>src\test\resources\stru.png</photo>
+  </ru.stqa.pft.addressbook.tests.model.ContactData>
+  <ru.stqa.pft.addressbook.tests.model.ContactData>
+    <id>2147483647</id>
+    <firstName>FirstName 3</firstName>
+    <lastName>LastName 3</lastName>
+    <address>Address 3</address>
+    <homePhone>11111111 3</homePhone>
+    <homePhone2>22222222 3</homePhone2>
+    <mobilePhone>33333333 3</mobilePhone>
+    <workPhone>44444444 3</workPhone>
+    <email>test@test.com 3</email>
+    <email2>test2@test.com 3</email2>
+    <email3>test3@test.com 3</email3>
+    <photo>src\test\resources\stru.png</photo>
+  </ru.stqa.pft.addressbook.tests.model.ContactData>
+  <ru.stqa.pft.addressbook.tests.model.ContactData>
+    <id>2147483647</id>
+    <firstName>FirstName 4</firstName>
+    <lastName>LastName 4</lastName>
+    <address>Address 4</address>
+    <homePhone>11111111 4</homePhone>
+    <homePhone2>22222222 4</homePhone2>
+    <mobilePhone>33333333 4</mobilePhone>
+    <workPhone>44444444 4</workPhone>
+    <email>test@test.com 4</email>
+    <email2>test2@test.com 4</email2>
+    <email3>test3@test.com 4</email3>
+    <photo>src\test\resources\stru.png</photo>
+  </ru.stqa.pft.addressbook.tests.model.ContactData>
+</list>
