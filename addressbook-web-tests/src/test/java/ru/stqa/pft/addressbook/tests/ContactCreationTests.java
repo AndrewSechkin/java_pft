@@ -29,7 +29,7 @@ public class ContactCreationTests extends TestBase{
       String xml = "";
       String line = reader.readLine();
       while(line != null) {
-        xml = xml + line;
+        xml+= line;
         line = reader.readLine();
       }
       XStream xstream = new XStream();
@@ -67,6 +67,7 @@ public class ContactCreationTests extends TestBase{
     Contacts after = app.db().contacts();
     assertThat(after, equalTo(
             before.withAdded( contact.withId(after.stream().mapToInt((g) -> g.getId()).max().getAsInt()))));
+    verifyContactListInUI();
   }
 
   @Test
