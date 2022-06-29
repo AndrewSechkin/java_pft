@@ -1,6 +1,5 @@
 package ru.stqa.pft.addressbook.appmanager;
 
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -61,11 +60,16 @@ public class GroupHelper extends HelperBase {
   }
 
   public void modify(GroupData group) {
+    selectGroupById(group.getId());
     initGroupModification();
     fillGroupForm(group);
     submitGroupModification();
     groupCache = null;
     returnToGroupPage();
+  }
+
+  public boolean isThereAGroup() {
+    return isElementPresent(By.name("selected[]"));
   }
 
   public int count() {
@@ -81,7 +85,7 @@ public class GroupHelper extends HelperBase {
 
     groupCache = new Groups();
     List<WebElement> elements = dr.findElements((By.cssSelector("span.group")));
-    for (WebElement element : elements) {
+    for (WebElement element: elements) {
       String name = element.getText();
       int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
       groupCache.add(new GroupData().withId(id).withName(name));

@@ -1,8 +1,8 @@
 package ru.stqa.pft.addressbook.tests;
 
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.thoughtworks.xstream.XStream;
-import com.google.common.reflect.TypeToken;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.ContactData;
@@ -29,7 +29,7 @@ public class ContactCreationTests extends TestBase{
       String xml = "";
       String line = reader.readLine();
       while(line != null) {
-        xml+= line;
+        xml = xml + line;
         line = reader.readLine();
       }
       XStream xstream = new XStream();
@@ -58,12 +58,13 @@ public class ContactCreationTests extends TestBase{
 
   @Test (dataProvider = "validContactsFromXml")
   public void testContactCreation(ContactData contact) {
-    String[] names = new String[] {"test1'", "test2", "test3"};
     app.goTo().contactPage();
-    Contacts before = app.contact().all();
+//    Contacts before = app.contact().all();
+    Contacts before = app.db().contacts();
     app.contact().create(contact);
     assertThat(app.contact().count(), equalTo(before.size() + 1));
-    Contacts after = app.contact().all();
+//    Contacts after = app.contact().all();
+    Contacts after = app.db().contacts();
     assertThat(after, equalTo(
             before.withAdded( contact.withId(after.stream().mapToInt((g) -> g.getId()).max().getAsInt()))));
   }
