@@ -45,8 +45,9 @@ public class TestBase {
     } else {
       return true;
     }
-
   }
+
+
 
   public void skipIfNotFixed(int issueId) throws MalformedURLException, ServiceException, RemoteException {
     if (isIssueOpen(issueId)) {

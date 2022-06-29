@@ -1,0 +1,33 @@
+apply plugin: 'java'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation 'com.google.code.gson:gson:2.9.0'
+    testImplementation 'org.apache.httpcomponents:httpclient:4.5.13'
+    testImplementation 'org.apache.httpcomponents:fluent-hc:4.5.13'
+    testImplementation 'org.testng:testng:7.4.0'
+    testImplementation 'org.seleniumhq.selenium:selenium-java:4.1.0'
+    testImplementation 'org.hamcrest:java-hamcrest:2.0.0.0'
+    testImplementation 'commons-net:commons-net:3.8.0'
+    testImplementation 'org.subethamail:subethasmtp:3.1.7'
+    testImplementation 'ru.lanwen.verbalregex:java-verbal-expressions:1.8'
+    testImplementation 'biz.futureware.mantis:mantis-axis-soap-client:1.2.19'
+}
+
+test {
+    useTestNG {
+        //       suites 'src/test/resources/testng.xml'
+    }
+    if (project.hasProperty('browser')) {
+        systemProperty 'browser', "${browser}"
+    }
+    if (project.hasProperty('target')) {
+        systemProperty 'target', "${target}"
+    }
+    if (project.hasProperty('verifyUI')) {
+        systemProperty 'verifyUI', "${verifyUI}"
+    }
+}
