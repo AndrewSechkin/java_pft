@@ -3,6 +3,7 @@ package ru.stqa.pft.mantis.appmanager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.remote.BrowserType;
 
 import java.io.File;
@@ -13,9 +14,15 @@ import java.util.concurrent.TimeUnit;
 
 public class ApplicationManager {
   private final Properties properties;
-  WebDriver dr;
+  private WebDriver dr;
 
   private String browser;
+  private  RegistrationHelper registrationHelper;
+  private ChangePasswordHelper changePasswordHelper;
+  public FtpHelper ftp;
+  private MailHelper mailHelper;
+  private JamesHelper jamesHelper;
+  private SoapHelper soapHelper;
 
 
   public ApplicationManager(String browser) {
@@ -26,21 +33,75 @@ public class ApplicationManager {
   public void init() throws IOException {
     String target = System.getProperty("target", "local");
     properties.load(new FileReader(new File(String.format("src/test/resources/%s.properties", target))));
-
-
-
-    if (browser.equals(BrowserType.FIREFOX)) {
-      dr = new FirefoxDriver();
-    } else if (browser.equals(BrowserType.CHROME)) {
-      dr = new ChromeDriver();
-    }
-    dr.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
-    dr.get(properties.getProperty("web.baseUrl"));
-
   }
 
   public void stop() {
-    dr.quit();
+    if (dr != null) {
+      dr.quit();
+    }
   }
 
+  public HttpSession newSession() {
+    return new HttpSession(this);
+  }
+
+  public  String getProperty(String key) {
+    return properties.getProperty(key);
+  }
+
+  public RegistrationHelper registration() {
+    if (registrationHelper == null) {
+      registrationHelper = new RegistrationHelper(this);
+    }
+    return  registrationHelper;
+  }
+
+  public ChangePasswordHelper changePassword() {
+    if (changePasswordHelper == null) {
+      changePasswordHelper = new ChangePasswordHelper(this);
+    }
+    return  changePasswordHelper;
+  }
+
+  public FtpHelper ftp() {
+    if (ftp == null) {
+      ftp = new FtpHelper(this);
+    }
+    return ftp;
+  }
+
+  public WebDriver getDriver() {
+    if (dr == null) {
+      if (browser.equals(BrowserType.FIREFOX)) {
+        dr = new FirefoxDriver();
+      } else if (browser.equals(BrowserType.CHROME)) {
+        dr = new ChromeDriver();
+      } else if (browser.equals(BrowserType.IE)) {
+        dr = new InternetExplorerDriver();
+      }
+      dr.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
+      dr.get(properties.getProperty("web.baseUrl"));
+    }
+    return dr;
+  }
+
+  public MailHelper mail() {
+    if (mailHelper == null) {
+      mailHelper = new MailHelper(this);
+    }
+    return mailHelper;
+  }
+  public  JamesHelper james() {
+    if(jamesHelper == null) {
+      jamesHelper = new JamesHelper(this);
+    }
+    return jamesHelper;
+  }
+
+  public  SoapHelper soap() {
+    if (soapHelper == null) {
+      soapHelper = new SoapHelper(this);
+    }
+    return soapHelper;
+  }
 }

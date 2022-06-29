@@ -8,11 +8,16 @@ dependencies {
     testImplementation 'org.testng:testng:6.9.10'
     testImplementation 'org.seleniumhq.selenium:selenium-java:2.52.0'
     testImplementation 'org.hamcrest:java-hamcrest:2.0.0.0'
+    testImplementation 'org.apache.httpcomponents:httpclient:4.5.13'
+    testImplementation 'commons-net:commons-net:3.8.0'
+    testImplementation 'org.subethamail:subethasmtp:3.1.7'
+    testImplementation 'ru.lanwen.verbalregex:java-verbal-expressions:1.8'
+    testImplementation 'biz.futureware.mantis:mantis-axis-soap-client:1.2.19'
 }
 
 test {
     useTestNG {
-        suites 'src/test/resources/testng.xml'
+        //       suites 'src/test/resources/testng.xml'
     }
     if (project.hasProperty('browser')) {
         systemProperty 'browser', "${browser}"
