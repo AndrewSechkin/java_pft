@@ -1,14 +1,16 @@
 package ru.stqa.pft.addressbook.appmanager;
 
-
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.remote.BrowserType;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
 
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.net.URL;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
@@ -34,13 +36,17 @@ public class ApplicationManager {
 
     dbHelper = new DbHelper();
 
-    if (browser.equals(BrowserType.FIREFOX)) {
-      dr = new FirefoxDriver();
+    if ("".equals(properties.getProperty("selenium.server"))) {
+      if (browser.equals(BrowserType.FIREFOX)) {
+        dr = new FirefoxDriver();
+      } else if (browser.equals(BrowserType.CHROME)) {
+        dr = new ChromeDriver();
+      }
+    } else {
+      DesiredCapabilities capabilities = new DesiredCapabilities();
+      capabilities.setBrowserName(browser);
+      dr = new RemoteWebDriver(new URL(properties.getProperty("selenium.server")), capabilities);
     }
-    else if (browser.equals(BrowserType.CHROME)) {
-      dr = new ChromeDriver();
-    }
-
     dr.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
     dr.get(properties.getProperty("web.baseUrl"));
     groupHelper = new GroupHelper(dr);
@@ -48,6 +54,7 @@ public class ApplicationManager {
     contactHelper = new ContactHelper(dr);
     sessionHelper = new SessionHelper(dr);
     sessionHelper.login(properties.getProperty("web.adminLogin"), properties.getProperty("web.adminPassword"));
+
   }
 
   public void stop() {
@@ -65,6 +72,7 @@ public class ApplicationManager {
   public ContactHelper contact() {
     return contactHelper;
   }
+
   public DbHelper db() {
     return dbHelper;
   }
