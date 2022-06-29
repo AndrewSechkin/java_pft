@@ -12,6 +12,26 @@
           </set>
         </option>
       </GradleProjectSettings>
+      <GradleProjectSettings>
+        <option name="distributionType" value="DEFAULT_WRAPPED" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/mantis-tests" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/mantis-tests" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+      <GradleProjectSettings>
+        <option name="delegatedBuild" value="false" />
+        <option name="testRunner" value="PLATFORM" />
+        <option name="distributionType" value="DEFAULT_WRAPPED" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/sandbox" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/sandbox" />
+          </set>
+        </option>
+      </GradleProjectSettings>
     </option>
   </component>
 </project>
