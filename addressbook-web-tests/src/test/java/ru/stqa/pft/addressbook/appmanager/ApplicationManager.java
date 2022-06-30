@@ -1,6 +1,5 @@
 package ru.stqa.pft.addressbook.appmanager;
 
-import org.openqa.selenium.Platform;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -18,7 +17,7 @@ import java.util.concurrent.TimeUnit;
 
 public class ApplicationManager {
   private final Properties properties;
-  WebDriver wd;
+  WebDriver dr;
 
   private SessionHelper sessionHelper;
   private NavigationHelper navigationHelper;
@@ -40,30 +39,30 @@ public class ApplicationManager {
 
     if ("".equals(properties.getProperty("selenium.server"))) {
       if (browser.equals(BrowserType.FIREFOX)) {
-        wd = new FirefoxDriver();
+        dr = new FirefoxDriver();
       } else if (browser.equals(BrowserType.CHROME)) {
-        wd = new ChromeDriver();
+        dr = new ChromeDriver();
       } else if (browser.equals(BrowserType.IE)) {
-        wd = new InternetExplorerDriver();
+        dr = new InternetExplorerDriver();
       }
     } else {
       DesiredCapabilities capabilities = new DesiredCapabilities();
       capabilities.setBrowserName(browser);
       capabilities.setPlatform(Platform.fromString(System.getProperty("platform", "win10")));
-      wd = new RemoteWebDriver(new URL(properties.getProperty("selenium.server")), capabilities);
+      dr = new RemoteWebDriver(new URL(properties.getProperty("selenium.server")), capabilities);
     }
-    wd.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
-    wd.get(properties.getProperty("web.baseUrl"));
-    groupHelper = new GroupHelper(wd);
-    navigationHelper = new NavigationHelper(wd);
-    contactHelper = new ContactHelper(wd);
-    sessionHelper = new SessionHelper(wd);
+    dr.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
+    dr.get(properties.getProperty("web.baseUrl"));
+    groupHelper = new GroupHelper(dr);
+    navigationHelper = new NavigationHelper(dr);
+    contactHelper = new ContactHelper(dr);
+    sessionHelper = new SessionHelper(dr);
     sessionHelper.login(properties.getProperty("web.adminLogin"), properties.getProperty("web.adminPassword"));
 
   }
 
   public void stop() {
-    wd.quit();
+    dr.quit();
   }
 
   public GroupHelper group() {
