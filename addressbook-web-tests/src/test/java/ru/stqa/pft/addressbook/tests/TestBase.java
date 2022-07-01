@@ -16,8 +16,8 @@ import static org.hamcrest.MatcherAssert.assertThat;
 
 public class TestBase {
 
-  protected static final ApplicationManager app = new ApplicationManager(System.getProperty("browser", BrowserType.CHROME));
-
+  // protected static final ApplicationManager app = new ApplicationManager(System.getProperty("browser", BrowserType.CHROME));
+  public static final ApplicationManager app = new ApplicationManager(System.getProperty("browser", BrowserType.CHROME));
   @BeforeSuite
   public void setUp() throws Exception {
     app.init();
@@ -33,9 +33,7 @@ public class TestBase {
     if (Boolean.getBoolean("verifyUI")) {
       Groups dbGroups = app.db().groups();
       Groups uiGroups = app.group().all();
-      assertThat(uiGroups, equalTo(dbGroups.stream()
-              .map((g) -> new GroupData().withId(g.getId()).withName(g.getName()))
-              .collect(Collectors.toSet())));
+      assertThat(uiGroups, equalTo(dbGroups.stream().map((g) -> new GroupData().withId(g.getId()).withName(g.getName())).collect(Collectors.toSet())));
     }
   }
 
@@ -43,9 +41,7 @@ public class TestBase {
     if (Boolean.getBoolean("verifyUI")) {
       Contacts dbContacts = app.db().contacts();
       Contacts uiContacts = app.contact().all();
-      assertThat(uiContacts, equalTo(dbContacts.stream()
-              .map((g) -> new ContactData().withId(g.getId()).withFirstName(g.getFirstName()).withLastName(g.getLastName()).withAddress(g.getAddress()).withHomePhone(g.getHomePhone()))
-              .collect(Collectors.toSet())));
+      assertThat(uiContacts, equalTo(dbContacts.stream().map((g) -> new ContactData().withId(g.getId()).withLastName(g.getLastName()).withFirstName(g.getFirstName()).withAddress(g.getAddress())).collect(Collectors.toSet())));
     }
   }
 

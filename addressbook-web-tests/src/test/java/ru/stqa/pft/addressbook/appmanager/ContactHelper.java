@@ -22,6 +22,8 @@ import java.util.Set;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 
+import static ru.stqa.pft.addressbook.tests.TestBase.app;
+
 public class ContactHelper extends HelperBase {
 
   public ContactHelper(WebDriver dr) {
@@ -42,6 +44,8 @@ public class ContactHelper extends HelperBase {
     type(By.name("address"), contactData.getAddress());
     type(By.name("home"), contactData.getHomePhone());
     type(By.name("mobile"), contactData.getMobilePhone());
+    type(By.name("work"), contactData.getWorkPhone());
+    type(By.name("phone2"), contactData.getHomePhone2());
     type(By.name("email"), contactData.getEmail());
     type(By.name("email2"), contactData.getEmail2());
     type(By.name("email3"), contactData.getEmail3());
@@ -55,99 +59,21 @@ public class ContactHelper extends HelperBase {
     } else {
       Assert.assertFalse(isElementPresent(By.name("new_group")));
     }
-    //new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
-
-    //  } else {
-
-    //    Assert.assertFalse(isElementPresent(By.name("new_group")));
-    //  }
   }
 
   public void initContactCreation() {
     click(By.linkText("add new"));
   }
 
-  public void addContactToGroup() {
-    click(By.name("add"));
-  }
-
-  public void deleteContact(Contacts contacts, Groups groups) {
-    int groupsSize = groups.size();
-    ContactData contact = findContactThatCanBeAddedToSomeGroup(contacts, groupsSize);
-    GroupData group = findGroupThatDoesNotIncludeContact(contacts, groups);
-    if (group != null && contact != null) {
-      chooseGroup(group.getId());
-      selectContactById(contact.getId());
-      selectGroup(group.getId());
-      deleteContactFromGroup(group.getName());
-
-      assertThat(contact.inGroup(group), equalTo(group));
-      Assert.assertNotEquals(contact.getGroups(), (group));
-    }
-  }
-
-  public void chooseGroup(int groupId) {
-    new Select(dr.findElement(By.name("group"))).selectByValue(String.valueOf(groupId));
-  }
-
-  public void deleteContactFromGroup(String name) {
-    click(By.name("update"));
-    dr.findElement(By.cssSelector("input[value='Remove from " + name + "']")).click();
-  }
-
-  public void selectGroup(int groupId) {
-    new Select(dr.findElement(By.name("to_group"))).selectByValue(String.valueOf(groupId));
-    addContactToGroup();
-    returnToHomePage();
-  }
-
-  public void checkContactInGroup(Contacts contacts, Groups groups) {
-    int groupsSize = groups.size();
-    ContactData contact = findContactThatCanBeAddedToSomeGroup(contacts, groupsSize);
-    GroupData group = findGroupThatDoesNotIncludeContact(contacts, groups);
-    if (group != null && contact != null) {
-      selectContactById(contact.getId());
-      selectGroup(group.getId());
-
-      assertThat(contact.inGroup(group), equalTo(group));
-    }
-
-
-  }
-
-  public GroupData findGroupThatDoesNotIncludeContact(Contacts contact, Groups groups) {
-    for (GroupData group : groups) {
-      if (group.getContacts().iterator().next().equals(contact)) {
-        return group;
-      }
-    }
-    return null; // не нашли
-  }
-
-  public ContactData findContactThatCanBeAddedToSomeGroup(Contacts contacts, int groupSize) {
-    for (ContactData contact : contacts) {
-      if (contact.getGroups().size() < groupSize) {
-        return contact;
-      }
-    }
-    return null; // не нашли
-  }
-
-  public void selectContact(Contacts contacts, Groups groups) {
-    checkContactInGroup(contacts, groups);
+  public void submitContactCreation() {
+    System.out.println("1");
+    click(By.xpath("//input[21]"));
+    System.out.println("2");
   }
 
   public void selectContactById(int id) {
-    if (dr.findElement(By.cssSelector("input[value='" + id + "']")).isDisplayed()) {
-      dr.findElement(By.cssSelector("input[value='" + id + "']")).click();
-    }
+    dr.findElement(By.cssSelector("input[value='" + id + "']")).click();
   }
-
-  public void submitContactCreation() {
-    click(By.xpath("//input[21]"));
-  }
-
-
 
   public void initContactModification(int id) {
     dr.findElement(By.cssSelector("a[href='edit.php?id=" + id + "']")).click();
@@ -156,6 +82,7 @@ public class ContactHelper extends HelperBase {
   public void submitContactModification() {
     click(By.name("update"));
   }
+
 
   // public Set<ContactData> all() {
   //  Set<ContactData> contacts = new HashSet<ContactData>();
@@ -182,6 +109,126 @@ public class ContactHelper extends HelperBase {
     accept();
   }
 
+  public void add(ContactData contact) throws InterruptedException {
+    Groups groups = app.db().groups();
+    if (!contact.getGroups().isEmpty()) {
+      Groups groupsInContact = contact.getGroups();
+      int groupsInContactSize = groupsInContact.size();
+      while (groupsInContactSize > 0) {
+        GroupData group = groupsInContact.iterator().next();
+        delete(group);
+        groupsInContactSize--;
+      }
+    } else {
+      returnToHomePage();
+      selectContactById(contact.getId());
+      addToGroup(groups);
+      returnToHomePage();
+      Groups groups1 = app.db().groups();
+      System.out.println(contact.getGroups());
+
+    }
+  }
+
+  public ContactData findContactThatCanBeAddedToSomeGroup(Contacts contacts, int groupSize) {
+    for (ContactData contact : contacts) {
+      if (contact.getGroups().size() < groupSize) {
+        return contact;
+      }
+    }
+    return null;
+  }
+
+  public ContactData findContactThatCanBeDeletedFromSomeGroup(Contacts contacts, int groupSize) {
+    for (ContactData contact : contacts) {
+      if (contact.getGroups().size() >= groupSize) {
+        return contact;
+      }
+    }
+    return contacts.iterator().next();
+  }
+
+  public void addToGroup(Groups groups) throws InterruptedException {
+
+    //  Groups groups = app.db().groups();
+    new Select(dr.findElement(By.name("to_group"))).selectByValue(String.valueOf(groups.iterator().next().getId()));
+    Thread.sleep(2000);
+    click(By.name("add"));
+    Thread.sleep(2000);
+    System.out.println();
+
+  }
+
+  public void deleteFromGroup() throws InterruptedException {
+    // new Select(wd.findElement(By.name("group"))).selectByValue(String.valueOf(groups.iterator().next().getId()));
+    Thread.sleep(2000);
+    click(By.name("remove"));  //wd.findElement(By.cssSelector("input[value='Delete']")).click();
+    Thread.sleep(2000);
+    //   System.out.println();
+  }
+
+  public GroupData selectGroupForDeletion(Groups groups)  throws InterruptedException {
+    new Select(dr.findElement(By.name("group"))).selectByValue(String.valueOf(groups.iterator().next().getId()));
+    Thread.sleep(2000);
+    //      click(By.name("remove"));
+    //       Thread.sleep(2000);
+    return groups.iterator().next();
+  }
+
+//    selectContactById(contact.getId());
+//    Groups beforeGroups = app.db().groups();
+//    Groups groupsInContact = contact.getGroups();
+
+
+
+  //   System.out.println(groupsInContact);
+  //   if (groupsInContact.iterator().hasNext()) {
+  //     System.out.println("inside 1 if");
+  //    if (groupsInContact.iterator().next().getId() == beforeGroups.iterator().next().getId()) {
+  //       System.out.println("inside 2nd if");
+  //      returnToHomePage();
+  //     } else {
+  //      System.out.println("inside else");
+  //     new Select(wd.findElement(By.name("to_group"))).selectByVisibleText(beforeGroups.iterator().next().getName());
+  //     click(By.name("add"));
+  //      returnToHomePage();
+  //     }
+  //    System.out.println("outside 2nd if");
+  //   }
+  //   System.out.println("outside 1 if");
+//  }
+
+
+  public void deleteSelectedGroups() {
+    click(By.name("delete"));
+  }
+
+
+  public void selectGroupById(int id) {
+    dr.findElement(By.cssSelector("input[value='" + id + "']")).click();
+  }
+
+
+  public void delete(GroupData group) {
+    click(By.linkText("groups"));
+    selectGroupById(group.getId());
+    deleteSelectedGroups();
+    //   groupCache = null;
+    returnToGroupPage();
+  }
+
+
+  public void returnToGroupPage() {
+    if (isElementPresent(By.linkText("group page"))) {
+      click(By.linkText("group page"));
+    }
+    click(By.linkText("groups"));
+  }
+
+  // ContactData contact = findContactThatCanBeAddedToSomeGroup(contacts, groupSize);
+
+//  GroupData group = findGroupThatDoesNotIncludeContact(contact, groups);
+
   public void create(ContactData contact) {
     initContactCreation();
     fillContactForm(contact, true);
@@ -206,8 +253,7 @@ public class ContactHelper extends HelperBase {
     contactCache = null;
   }
 
-  public boolean isThereAContact(Contacts contacts) {
-    Boolean c = contacts.iterator().hasNext();
+  public boolean isThereAContact() {
     return isElementPresent(By.name("selected[]"));
   }
 
@@ -235,7 +281,8 @@ public class ContactHelper extends HelperBase {
       String address = cells.get(3).getText();
       String allEmails = cells.get(4).getText();
       String allPhones = cells.get(5).getText();
-      contactCache.add(new ContactData().withId(id).withFirstName(firstname).withLastName(lastname).withAddress(address).withAllEmails(allEmails).withAllPhones(allPhones));
+      //  contactCache.add(new ContactData().withId(id).withFirstName(firstname).withLastName(lastname).withAddress(address).withAllEmails(allEmails).withAllPhones(allPhones));
+      contactCache.add(new ContactData().withId(id).withFirstName(firstname).withLastName(lastname).withAddress(address));
     }
     return new Contacts(contactCache);
   }
@@ -263,4 +310,5 @@ public class ContactHelper extends HelperBase {
     List<WebElement> cells = row.findElements(By.tagName("td"));
     cells.get(7).findElement(By.tagName("a")).click();
   }
+
 }
